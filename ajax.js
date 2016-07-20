@@ -212,7 +212,7 @@
 		return p;
 	}
 
-	function post(url, data, fn,err) {
+	function post(url, data,multi, fn,err) {
 		var conf = { url: url, data: data, responseType: "json", method: "POST" };
 		if (fn) {
 			conf.success = fn;
@@ -220,6 +220,10 @@
 
 		if(err){
 			conf.failuer=err;
+		}
+
+		if(multi){
+			conf.multi=true;
 		}
 		var p = ajax(conf);
 		return p;

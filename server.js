@@ -22,18 +22,29 @@ app.get('/',function(req,res){
 
 app.post('/test',function(req,res){
 	console.log("kkk");
-	// var form=new formidable.IncomingForm();
+	var form=new formidable.IncomingForm();
 
-	// form.parse(req,function(errors,fields,files){
-	// 	res.json(fields);
-	// });
-	console.log(req.body);
+	form.parse(req,function(errors,fields,files){
+		console.log(fields);
+		res.json(fields);
+	});
+	// console.log(req.body);
 })
 
 app.get('/test2',function(req,res){
 	// console.log(req.body);
 	res.setHeader('Content-Type','text/json');
 	res.json({name:"jack"});
+})
+
+
+app.post('/uploadWav',function(req,res){
+	var form=new formidable.IncomingForm();
+
+	form.parse(req,function(err,fields,files){
+		console.log(files);
+		res.end('ok')
+	})
 })
 
 

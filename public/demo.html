@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script type="text/javascript" src="ajax.js"></script>
+<!-- <script src="jquery.js"></script> -->
+</head>
+<body>
+	<div class="">
+		<form action="/test" method="POST" enctype="multipart/form-data" id="form1">
+			<input type="text" name="name"/>
+			<input type="text" name="age"/>
+			<input type="submit" value="submit"/>
+			<input type="file" name="pic"/>
+		</form>
+	</div>
+	<button id="btn">click</button>
+	<button id="btn2">click2</button>
+    <script>
+    	var btn=document.getElementById("btn");
+    	var btn2=document.getElementById("btn2");
+    	btn.onclick=function(){
+	    	get('./test2',function(data){
+                // alert(data);
+                alert(data.name);
+                // console.log(data);
+            },function(e){
+                alert('err');
+                alert(e);
+            });
+
+            // var p=get('./test2');
+            // p.then(function(data){
+            //     alert(data.name);
+            // },function(err){
+            //     console.log(err);
+            // })
+
+	    	// post('./test.php',{name:'jack'}).then(function(data){
+	    	// 	console.log(data);
+	    	// })
+    	}
+    	btn2.onclick=function(){
+    		// get('./test.php',function(data){
+    		// 	return data;
+    		// }).then(function(data){
+    		// 	console.log(data);
+    		// })
+
+    		post('/test','form1',function(res){
+                console.log(res);
+                // alert('calk');
+    			// var a=res['name'];
+                // alert(res.name);
+                // alert(res.age);
+    			// return data;
+    		})
+    	}
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

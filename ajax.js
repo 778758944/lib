@@ -58,8 +58,12 @@
 			if(!isFormData){
 				throw new Error('not support formdata');
 			}
-			form = new FormData(document.getElementById(data));
-
+			if(typeof data == 'string'){
+				form = new FormData(document.getElementById(data));
+			}
+			else{
+				form=data;
+			}
 			return form;
 		}
 

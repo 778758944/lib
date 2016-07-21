@@ -2,6 +2,7 @@ var express=require('express');
 var app=express();
 var bodyParser=require('body-parser');
 var formidable=require('formidable');
+var fs=require('fs');
 
 app.listen(3000,function(){
 	console.log("listen 3000")
@@ -25,8 +26,18 @@ app.post('/test',function(req,res){
 	var form=new formidable.IncomingForm();
 
 	form.parse(req,function(errors,fields,files){
+		console.log('formdata');
 		console.log(fields);
-		res.json(fields);
+		console.log(files);
+		var path=__dirname+'/'+files.pic.name;
+
+		var readStream=fs.createReadStream(files.pic.path);
+		var writeStream=fs.createWriteStream(path);
+		readStream.pipe(writeStream);
+
+
+		res.json({fields});
+
 	});
 	// console.log(req.body);
 })

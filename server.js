@@ -54,7 +54,12 @@ app.post('/uploadWav',function(req,res){
 
 	form.parse(req,function(err,fields,files){
 		console.log(files);
-		res.end('ok')
+		var path=__dirname+'/'+files.audioData.name+'.wav';
+		var readStream=fs.createReadStream(files.audioData.path);
+		var writeStream=fs.createWriteStream(path);
+		readStream.pipe(writeStream);
+		res.end('ok');
+		
 	})
 })
 
